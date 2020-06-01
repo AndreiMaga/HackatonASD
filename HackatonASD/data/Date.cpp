@@ -67,6 +67,10 @@ bool Date::operator<=(const Date& b)
     return true;
 }
 
+std::string Date::str() const {
+    return  std::to_string(day) + "/" + std::to_string(month) + "/" + std::to_string(year);
+}
+
 Date* Date::fromString(std::string input)
 {
     Date* date = new Date();

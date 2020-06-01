@@ -5,19 +5,11 @@
 class Logger {
 public:
     static QPlainTextEdit* qpte;
-    static void log(const char* type, const char* message) {
-        qpte->appendPlainText("[" + QString(type) + "] " + QString(message));
-    }
+    static void log(const char* type, const char* message);
 
-    static void info(const char* message) {
-        log("info", message);
-    }
+    static void info(const char* message);
 
-    static void warning(const char* message) {
-        log("warning", message);
-    }
+    static void warning(const char* message);
 
-    static void error(const char* message) {
-        log("error", message);
-    }
+    static void error(const char* message);
 };

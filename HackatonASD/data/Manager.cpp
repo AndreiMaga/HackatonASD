@@ -1,12 +1,12 @@
 #include "Manager.h"
 
-void Manager::adauga(Entry* e)
+void Manager::add(Entry* e)
 {
     this->entries.push_back(e);
     Logger::info(("Added entry with the name:" + e->name).c_str());
 }
 
-void Manager::sterge(Entry* e)
+void Manager::del(Entry* e)
 {
     this->entries.erase(this->entries.begin() + this->posInList(e));
     Logger::info(("Deleted entry with the name:" + e->name).c_str());

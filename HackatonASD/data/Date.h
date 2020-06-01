@@ -13,9 +13,7 @@ public:
     bool operator==(const Date& b);
     bool operator<=(const Date& b);
 
-    std::string str() const {
-        return  std::to_string(day) + "/" + std::to_string(month) + "/" + std::to_string(year);
-    }
+    std::string str() const;
 
     static Date* fromString(std::string input);
 };

@@ -9,8 +9,8 @@ class Manager
 {
 
     std::vector<Entry*> entries;
-    void adauga(Entry* e);
-    void sterge(Entry* e);
+    void add(Entry* e);
+    void del(Entry* e);
     int posInList(Entry* e);
 
     QTableWidget* qtw;
