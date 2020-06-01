@@ -4,7 +4,7 @@
 #include "../misc/Utils.h"
 #include <map>
 #include "SortType.h"
-#include <QTableWidgetItem>
+#include "QTableWidgetItemEntry.h"
 class Entry
 {
 public:
@@ -16,12 +16,12 @@ public:
     Date* expireon = new Date();
     Date* addedon = new Date();
 
-    QTableWidgetItem* nr_qtwi = 0;
-    QTableWidgetItem* name_qtwi = 0;
-    QTableWidgetItem* stock_qtwi = 0;
-    QTableWidgetItem* price_qtwi = 0;
-    QTableWidgetItem* exp_qtwi = 0;
-    QTableWidgetItem* add_qtwi = 0;
+    QTableWidgetItemEntry<Entry>* nr_qtwi = 0;
+    QTableWidgetItemEntry<Entry>* name_qtwi = 0;
+    QTableWidgetItemEntry<Entry>* stock_qtwi = 0;
+    QTableWidgetItemEntry<Entry>* price_qtwi = 0;
+    QTableWidgetItemEntry<Entry>* exp_qtwi = 0;
+    QTableWidgetItemEntry<Entry>* add_qtwi = 0;
 
     static SortType st;
 

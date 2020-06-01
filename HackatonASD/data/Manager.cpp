@@ -10,7 +10,7 @@ void Manager::del(Entry* e)
 {
     this->entries.erase(this->entries.begin() + this->posInList(e));
     Logger::info(("Deleted entry with the name:" + e->name).c_str());
-    free(e);
+    delete e;
 }
 
 int Manager::posInList(Entry* e)
@@ -40,7 +40,8 @@ void Manager::saveData() {
 }
 
 void Manager::sort() {
-    quicksort<Entry>(&entries);
+    quicksort<Entry>(&entries, this->reverse_sort);
+    this->reverse_sort = !this->reverse_sort;
 }
 
 void Manager::qtw_init() {
@@ -49,15 +50,19 @@ void Manager::qtw_init() {
         qtw->setRowCount(this->entries.size());
         qtw->setHorizontalHeaderLabels({ "Number", "Name", "Stock", "Price", "Expires on", "Added on" });
     }
+    else {
+        qtw->clear();
+        Logger::info(("Cleared from the table " + std::to_string(this->entries.size()) + " entries.").c_str());
+    }
 }
 
 void Manager::populate()
 {
     qtw_init();
     int i = 0;
+    Logger::info(("Populating the table with " + std::to_string(this->entries.size()) + " entries.").c_str());
     for (Entry* e : this->entries) {
         e->createTableItems();
-
         qtw->setItem(i, 0, e->nr_qtwi);
         qtw->setItem(i, 1, e->name_qtwi);
         qtw->setItem(i, 2, e->stock_qtwi);
@@ -69,11 +74,7 @@ void Manager::populate()
     qtw->update();
 }
 
-void Manager::forceUpdate()
+int Manager::size()
 {
-    for (Entry* e : this->entries) {
-        e->extractFromTableItems();
-    }
-    qtw->reset();
-    this->populate();
+    return this->entries.size();
 }

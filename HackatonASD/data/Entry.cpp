@@ -97,12 +97,20 @@ bool Entry::operator>(const Entry& b) {
 }
 
 void Entry::createTableItems() {
-    this->nr_qtwi = new QTableWidgetItem(QString(std::to_string(this->nr).c_str()));
-    this->name_qtwi = new QTableWidgetItem(QString(this->name.c_str()));
-    this->stock_qtwi = new QTableWidgetItem(QString(std::to_string(this->stock).c_str()));
-    this->price_qtwi = new QTableWidgetItem(QString(std::to_string(this->price).c_str()));
-    this->exp_qtwi = new QTableWidgetItem(QString(this->expireon->str().c_str()));
-    this->add_qtwi = new QTableWidgetItem(QString(this->addedon->str().c_str()));
+    this->nr_qtwi = new QTableWidgetItemEntry<Entry>(QString(std::to_string(this->nr).c_str()));
+    this->name_qtwi = new QTableWidgetItemEntry<Entry>(QString(this->name.c_str()));
+    this->stock_qtwi = new QTableWidgetItemEntry<Entry>(QString(std::to_string(this->stock).c_str()));
+    this->price_qtwi = new QTableWidgetItemEntry<Entry>(QString(std::to_string(this->price).c_str()));
+    this->exp_qtwi = new QTableWidgetItemEntry<Entry>(QString(this->expireon->str().c_str()));
+    this->add_qtwi = new QTableWidgetItemEntry<Entry>(QString(this->addedon->str().c_str()));
+
+    this->nr_qtwi->e = this;
+    this->name_qtwi->e = this;
+    this->stock_qtwi->e = this;
+    this->price_qtwi->e = this;
+    this->exp_qtwi->e = this;
+    this->add_qtwi->e = this;
+
 }
 
 void Entry::extractFromTableItems() {

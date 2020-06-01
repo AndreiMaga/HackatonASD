@@ -45,8 +45,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="HackatonASD.ui">
-      <Filter>Resource Files</Filter>
+    <QtUic Include="ui\HackatonASD.ui">
+      <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
@@ -73,7 +73,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="HackatonASD.qrc" />
+    <QtRcc Include="ui\HackatonASD.qrc" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data\Date.h">
@@ -99,6 +99,9 @@
     </ClInclude>
     <ClInclude Include="io\Logger.h">
       <Filter>Header Files\io</Filter>
+    </ClInclude>
+    <ClInclude Include="data\QTableWidgetItemEntry.h">
+      <Filter>Header Files\data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

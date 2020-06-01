@@ -7,7 +7,7 @@
 #include <QTableWidgetItem>
 class Manager
 {
-
+    bool reverse_sort = false;
     std::vector<Entry*> entries;
     void add(Entry* e);
     void del(Entry* e);
@@ -24,5 +24,5 @@ public:
     void sort();
     void qtw_init();
     void populate();
-    void forceUpdate();
+    int size();
 };

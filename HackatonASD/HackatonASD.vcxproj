@@ -96,6 +96,7 @@
     <ClInclude Include="data\Date.h" />
     <ClInclude Include="data\Entry.h" />
     <ClInclude Include="data\Manager.h" />
+    <ClInclude Include="data\QTableWidgetItemEntry.h" />
     <ClInclude Include="data\SortType.h" />
     <ClInclude Include="io\EntryIO.h" />
     <ClInclude Include="io\Logger.h" />

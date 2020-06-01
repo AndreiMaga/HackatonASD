@@ -8,17 +8,17 @@ void swap(std::vector<T*>* e, int i, int j) {
 }
 
 template <typename T>
-int partition(std::vector<T*>* e,int left, int right) {
+int partition(std::vector<T*>* e, int left, int right, bool reversed) {
     int pi = left + (right - left) / 2;
     T* pv = (*e)[pi];
 
     int i = left, j = right;
 
     while (i <= j) {
-        while ( *(*e)[i] < *pv) {
+        while ( reversed ? *(*e)[i] > * pv : *(*e)[i] < *pv) {
             i++;
         }
-        while ( *(*e)[j] > *pv) {
+        while ( reversed ? *(*e)[j] < * pv : *(*e)[j] > *pv) {
             j--;
         }
         if (i <= j) {
@@ -31,7 +31,7 @@ int partition(std::vector<T*>* e,int left, int right) {
     return i;
 }
 template <typename T>
-void quicksort(std::vector<T*>* e, int left, int right) {
+void quicksort(std::vector<T*>* e, int left, int right, bool reversed = false) {
     if (left < right) {
         int pi = partition(e, left, right);
         quicksort(e, left, pi - 1);
@@ -40,6 +40,6 @@ void quicksort(std::vector<T*>* e, int left, int right) {
 }
 
 template <typename T>
-void quicksort(std::vector<T*>* e) {
-    quicksort<T>(e, 0, (int)e->size() - 1);
+void quicksort(std::vector<T*>* e, bool reversed = false) {
+    quicksort<T>(e, 0, (int)e->size() - 1, reversed);
 }

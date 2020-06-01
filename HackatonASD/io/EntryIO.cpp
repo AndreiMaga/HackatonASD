@@ -1,6 +1,6 @@
 #include "EntryIO.h"
 
-std::string IO::inFile = "file.txt";
+std::string IO::inFile = "";
 std::string IO::outFile = "";
 
 std::vector<Entry*>* IO::load()

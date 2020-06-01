@@ -1,5 +1,6 @@
 #include "HackatonASD.h"
 #include <QProgressDialog>
+#include <QFileDialog>
 
 HackatonASD::HackatonASD(QWidget *parent)
     : QMainWindow(parent)
@@ -9,7 +10,6 @@ HackatonASD::HackatonASD(QWidget *parent)
     qdwr = new QDockWidget("Table");
     qdwl = new QDockWidget("Operations");
     qdwb = new QDockWidget("Logger");
-
 
     Logger::qpte = new QPlainTextEdit();
     Logger::qpte->setReadOnly(true);
@@ -36,8 +36,26 @@ HackatonASD::HackatonASD(QWidget *parent)
 }
 
 void HackatonASD::loadData() {
+    QFileDialog* qfd = new QFileDialog(this);
+
+    QStringList file;
+    qfd->setFileMode(QFileDialog::FileMode::ExistingFile);
+    qfd->setDefaultSuffix(QString("csv"));
+    qfd->setViewMode(QFileDialog::Detail);
+
+    if (qfd->exec()) {
+        file = qfd->selectedFiles();
+    }
+
+    if (file.size() == 0) {
+        Logger::error("No files selected");
+        return;
+    }
+    IO::inFile = file[0].toLocal8Bit().constData();
+
     this->man->loadData();
     this->loadDataPB->setVisible(false);
+    delete loadDataPB; // free memory
     this->man->populate();
 }
 
@@ -65,9 +83,9 @@ void HackatonASD::sort(int col) {
     }
     QProgressDialog* qpd = new QProgressDialog();
     qpd->setLabelText(QString("Please wait..."));
+    Logger::info(("Sorting " + std::to_string(this->man->size()) + " entries.").c_str());
     qpd->show();
     this->man->sort();
-
     qpd->close();
 
     delete qpd;
