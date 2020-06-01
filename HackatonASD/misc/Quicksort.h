@@ -33,9 +33,9 @@ int partition(std::vector<T*>* e, int left, int right, bool reversed) {
 template <typename T>
 void quicksort(std::vector<T*>* e, int left, int right, bool reversed = false) {
     if (left < right) {
-        int pi = partition(e, left, right);
-        quicksort(e, left, pi - 1);
-        quicksort(e, pi, right);
+        int pi = partition(e, left, right, reversed);
+        quicksort(e, left, pi - 1, reversed);
+        quicksort(e, pi, right, reversed);
     }
 }
 

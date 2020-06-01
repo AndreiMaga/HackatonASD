@@ -7,7 +7,11 @@ HackatonASD::HackatonASD(QWidget *parent)
 {
     ui.setupUi(this);
     
-    qdwr = new QDockWidget("Table");
+    init();
+}
+
+void HackatonASD::init() {
+    qdwm = new QDockWidget("Table");
     qdwl = new QDockWidget("Operations");
     qdwb = new QDockWidget("Logger");
 
@@ -16,23 +20,30 @@ HackatonASD::HackatonASD(QWidget *parent)
     qdwb->setWidget(Logger::qpte);
 
     qtw = new QTableWidget(this);
-    qdwr->setWidget(qtw);
+    qdwm->setWidget(qtw);
     man = new Manager(qtw);
     qtw->setSortingEnabled(true);
+    this->setCentralWidget(qdwm);
+    addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, qdwl);
+    addDockWidget(Qt::DockWidgetArea::BottomDockWidgetArea, qdwb);
+    qfl = new QFrame(qdwl);
+    qfl->resize(500, qfl->height());
+
+    loadDataPB = new QPushButton(QString("Load"), qfl);
+    saveDataPB = new QPushButton(QString("Save"), qfl);
+    saveDataPB->setVisible(false);
+
+    makeconnections();
+}
+
+void HackatonASD::makeconnections() {
 
     connect(qtw->horizontalHeader(), SIGNAL(sectionClicked(int)),
         this, SLOT(sort(int)));
-    this->setCentralWidget(qdwr);
-    addDockWidget(Qt::DockWidgetArea::LeftDockWidgetArea, qdwl);
-    addDockWidget(Qt::DockWidgetArea::BottomDockWidgetArea, qdwb);
-    
-    
-    loadDataPB = new QPushButton(QString("Load"),this);
+
     connect(loadDataPB, SIGNAL(released()), this, SLOT(loadData()));
 
-    saveDataPB = new QPushButton(QString("Save"), qdwl);
     connect(saveDataPB, SIGNAL(released()), this, SLOT(saveData()));
-    
 }
 
 void HackatonASD::loadData() {
@@ -48,19 +59,25 @@ void HackatonASD::loadData() {
     }
 
     if (file.size() == 0) {
-        Logger::error("No files selected");
+        Logger::error("No file selected.");
         return;
     }
+    delete qfd;
     IO::inFile = file[0].toLocal8Bit().constData();
 
     this->man->loadData();
-    this->loadDataPB->setVisible(false);
-    delete loadDataPB; // free memory
+    this->saveDataPB->setVisible(true);
     this->man->populate();
 }
 
 void HackatonASD::saveData() {
+    QProgressDialog* qpd = new QProgressDialog();
+    qpd->setLabelText(QString("Please wait..."));
+    qpd->show();
     this->man->saveData();
+    qpd->close();
+
+    delete qpd;
 }
 
 void HackatonASD::sort(int col) {
