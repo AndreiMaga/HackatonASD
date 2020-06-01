@@ -87,6 +87,7 @@
     <ClCompile Include="data\Manager.cpp" />
     <ClCompile Include="ui\HackatonASD.cpp" />
     <QtRcc Include="ui\HackatonASD.qrc" />
+    <QtRcc Include="ui\theme\breeze.qrc" />
     <QtUic Include="ui\HackatonASD.ui" />
     <ClCompile Include="io\EntryIO.cpp" />
     <ClCompile Include="io\Logger.cpp" />

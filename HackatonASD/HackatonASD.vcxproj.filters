@@ -74,6 +74,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="ui\HackatonASD.qrc" />
+    <QtRcc Include="ui\theme\breeze.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="data\Date.h">
