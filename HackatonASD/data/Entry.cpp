@@ -21,7 +21,7 @@ Entry* Entry::fromString(std::string input) {
     e->nr = std::stoi(tokens[tokenHeader["nr"]]);
     e->name = tokens[tokenHeader["name"]];
     e->stock = std::stoi(tokens[tokenHeader["stock"]]);
-    e->price = std::stod(tokens[3]);
+    e->price = std::stod(tokens[tokenHeader["price"]);
     e->expireon = Date::fromString(tokens[tokenHeader["expireon"]]);
     e->addedon = Date::fromString(tokens[tokenHeader["addedon"]]);
 
