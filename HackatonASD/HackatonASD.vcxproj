@@ -82,6 +82,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ui\AddWindow.cpp" />
     <ClCompile Include="data\Date.cpp" />
     <ClCompile Include="data\Entry.cpp" />
     <ClCompile Include="data\Manager.cpp" />
@@ -94,6 +95,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <QtMoc Include="ui\AddWindow.h" />
     <ClInclude Include="data\Date.h" />
     <ClInclude Include="data\Entry.h" />
     <ClInclude Include="data\Manager.h" />

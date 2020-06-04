@@ -71,6 +71,9 @@
     <ClCompile Include="ui\HackatonASD.cpp">
       <Filter>Source Files\ui</Filter>
     </ClCompile>
+    <ClCompile Include="ui\AddWindow.cpp">
+      <Filter>Source Files\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="ui\HackatonASD.qrc" />
@@ -109,6 +112,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="ui\HackatonASD.h">
+      <Filter>Header Files\ui</Filter>
+    </QtMoc>
+    <QtMoc Include="ui\AddWindow.h">
       <Filter>Header Files\ui</Filter>
     </QtMoc>
   </ItemGroup>

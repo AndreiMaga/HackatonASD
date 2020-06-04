@@ -9,16 +9,15 @@ class Manager
 {
     bool reverse_sort = false;
     std::vector<Entry*> entries;
-    void add(Entry* e);
-    void del(Entry* e);
     int posInList(Entry* e);
-
     QTableWidget* qtw;
 
 public:
-
+    int max = 0;
     Manager(QTableWidget*);
-
+    void setItems(int i,Entry* e);
+    void add(Entry* e);
+    void del(Entry* e);
     void loadData();
     void saveData();
     void sort();

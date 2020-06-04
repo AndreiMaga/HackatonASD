@@ -13,8 +13,8 @@ public:
     int stock = 0;
     float price = 0;
     std::string name = "";
-    Date* expireon = new Date();
-    Date* addedon = new Date();
+    Date* expireon = 0;
+    Date* addedon = 0;
 
     QTableWidgetItemEntry<Entry>* nr_qtwi = 0;
     QTableWidgetItemEntry<Entry>* name_qtwi = 0;
@@ -41,6 +41,8 @@ public:
     void createTableItems();
 
     void extractFromTableItems();
+
+    ~Entry();
 
 };
 

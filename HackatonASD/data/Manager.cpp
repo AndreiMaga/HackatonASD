@@ -1,8 +1,21 @@
 #include "Manager.h"
 
+void Manager::setItems(int i, Entry* e) {
+    e->createTableItems();
+    qtw->setItem(i, 0, e->nr_qtwi);
+    qtw->setItem(i, 1, e->name_qtwi);
+    qtw->setItem(i, 2, e->stock_qtwi);
+    qtw->setItem(i, 3, e->price_qtwi);
+    qtw->setItem(i, 4, e->exp_qtwi);
+    qtw->setItem(i, 5, e->add_qtwi);
+}
+
 void Manager::add(Entry* e)
 {
     this->entries.push_back(e);
+    qtw->setRowCount(this->entries.size());
+    setItems(this->entries.size() - 1,e);
+    qtw->update();
     Logger::info(("Added entry with the name:" + e->name).c_str());
 }
 
@@ -48,27 +61,24 @@ void Manager::qtw_init() {
     if (qtw->columnCount() != 6) {
         qtw->setColumnCount(6);
         qtw->setRowCount(this->entries.size());
-        qtw->setHorizontalHeaderLabels({ "Number", "Name", "Stock", "Price", "Expires on", "Added on" });
+
     }
     else {
         qtw->clear();
         Logger::info(("Cleared from the table " + std::to_string(this->entries.size()) + " entries.").c_str());
     }
+    qtw->setHorizontalHeaderLabels({ "Number", "Name", "Stock", "Price", "Expires on", "Added on" });
 }
 
 void Manager::populate()
 {
     qtw_init();
-    int i = 0;
     Logger::info(("Populating the table with " + std::to_string(this->entries.size()) + " entries.").c_str());
+    int i = 0;
     for (Entry* e : this->entries) {
-        e->createTableItems();
-        qtw->setItem(i, 0, e->nr_qtwi);
-        qtw->setItem(i, 1, e->name_qtwi);
-        qtw->setItem(i, 2, e->stock_qtwi);
-        qtw->setItem(i, 3, e->price_qtwi);
-        qtw->setItem(i, 4, e->exp_qtwi);
-        qtw->setItem(i, 5, e->add_qtwi);
+        if (e->nr > max)
+            max = e->nr;
+        setItems(i, e);
         i++;
     }
     qtw->update();

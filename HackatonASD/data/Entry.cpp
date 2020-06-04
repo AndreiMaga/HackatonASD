@@ -123,3 +123,14 @@ void Entry::extractFromTableItems() {
     this->expireon = Date::fromString(exp_qtwi->text().toLocal8Bit().constData());
     this->addedon = Date::fromString(add_qtwi->text().toLocal8Bit().constData());
 }
+
+Entry::~Entry() {
+    delete this->nr_qtwi;
+    delete this->name_qtwi;
+    delete this->stock_qtwi;
+    delete this->price_qtwi;
+    delete this->exp_qtwi;
+    delete this->add_qtwi;
+    delete this->expireon;
+    delete this->addedon;
+}

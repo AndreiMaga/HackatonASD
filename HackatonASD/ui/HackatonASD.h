@@ -8,7 +8,10 @@
 #include <QPlainTextEdit>
 #include <QHeaderView> 
 #include <QFrame>
+#include <QProgressDialog>
+#include <QFileDialog>
 #include "../data/Manager.h"
+#include "AddWindow.h"
 
 class HackatonASD : public QMainWindow
 {
@@ -24,14 +27,20 @@ public:
     QFrame* qfl;
     QPushButton* loadDataPB;
     QPushButton* saveDataPB;
+    QPushButton* delDataPB;
+    QPushButton* addDataPB;
+    AddWindow* addWindow;
 private:
     Ui::HackatonASDClass ui;
 
     void init();
+    void createButtons();
     void makeconnections();
 
 private slots:
     void loadData();
     void saveData();
     void sort(int col);
+    void del();
+    void add(Entry* e);
 };
