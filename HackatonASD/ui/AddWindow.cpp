@@ -56,8 +56,7 @@ void AddWindow::createlayout() {
 
 void AddWindow::add() {
     Entry* e = new Entry();
-    e->nr = man->max + 1;
-    man->max + 1;
+    e->nr = man->inc();
     e->name = name->toPlainText().toLocal8Bit();
     e->stock = stock->value();
     e->price = (float)price->value();

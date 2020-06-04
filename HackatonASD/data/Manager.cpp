@@ -53,20 +53,17 @@ void Manager::saveData() {
 }
 
 void Manager::sort() {
+    if (this->entries.size() > 10000) {
+        Logger::warning("This might take a while.");
+    }
     quicksort<Entry>(&entries, this->reverse_sort);
     this->reverse_sort = !this->reverse_sort;
 }
 
 void Manager::qtw_init() {
-    if (qtw->columnCount() != 6) {
-        qtw->setColumnCount(6);
-        qtw->setRowCount(this->entries.size());
-
-    }
-    else {
-        qtw->clear();
-        Logger::info(("Cleared from the table " + std::to_string(this->entries.size()) + " entries.").c_str());
-    }
+    qtw->clear();
+    qtw->setColumnCount(6);
+    qtw->setRowCount(this->entries.size());
     qtw->setHorizontalHeaderLabels({ "Number", "Name", "Stock", "Price", "Expires on", "Added on" });
 }
 
@@ -87,4 +84,10 @@ void Manager::populate()
 int Manager::size()
 {
     return this->entries.size();
+}
+
+int Manager::inc()
+{
+    max += 1;
+    return max;
 }

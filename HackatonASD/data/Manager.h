@@ -24,4 +24,5 @@ public:
     void qtw_init();
     void populate();
     int size();
+    int inc();
 };
